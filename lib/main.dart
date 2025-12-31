@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import 'src/constants.dart';
 import 'src/home.dart';
@@ -22,6 +23,8 @@ class _AppState extends State<App> {
   bool _useMaterial3 = true;
   ThemeMode _themeMode = ThemeMode.system;
   ColorSeed _colorSelected = ColorSeed.baseColor;
+  Color _customColorSelected = Colors.white;
+  Color _pickerColor = Colors.white;
   ColorImageProvider _imageSelected = ColorImageProvider.leaves;
   ColorScheme? _imageColorScheme = const ColorScheme.light();
   ColorSelectionMethod _colorSelectionMethod = ColorSelectionMethod.colorSeed;
@@ -46,11 +49,36 @@ class _AppState extends State<App> {
     });
   }
 
-  void _handleColorSelect(int value) {
-    setState(() {
-      _colorSelectionMethod = ColorSelectionMethod.colorSeed;
-      _colorSelected = ColorSeed.values[value];
-    });
+  void _handleColorSelect(BuildContext context, int value) {
+    final colorSeed = ColorSeed.values[value];
+
+    if (colorSeed == ColorSeed.custom) {
+      showDialog<void>(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: SingleChildScrollView(
+            child: ColorPicker(
+              pickerColor: _pickerColor,
+              onColorChanged: _handleColorPicker,
+            ),
+          ),
+          actions: [
+            ElevatedButton(
+              child: const Text('Ok'),
+              onPressed: () {
+                _handleCustomColorSelect();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
+      );
+    } else {
+      setState(() {
+        _colorSelectionMethod = ColorSelectionMethod.colorSeed;
+        _colorSelected = colorSeed;
+      });
+    }
   }
 
   void _handleImageSelect(int value) {
@@ -66,6 +94,19 @@ class _AppState extends State<App> {
     });
   }
 
+  void _handleCustomColorSelect() {
+    setState(() {
+      _colorSelectionMethod = ColorSelectionMethod.customColor;
+      _customColorSelected = _pickerColor;
+    });
+  }
+
+  void _handleColorPicker(Color color) {
+    setState(() {
+      _pickerColor = color;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -76,7 +117,9 @@ class _AppState extends State<App> {
         colorSchemeSeed:
             _colorSelectionMethod == ColorSelectionMethod.colorSeed
             ? _colorSelected.color
-            : null,
+            : (_colorSelectionMethod == ColorSelectionMethod.customColor
+                  ? _customColorSelected
+                  : null),
         colorScheme: _colorSelectionMethod == ColorSelectionMethod.image
             ? _imageColorScheme
             : null,
@@ -87,7 +130,9 @@ class _AppState extends State<App> {
         colorSchemeSeed:
             _colorSelectionMethod == ColorSelectionMethod.colorSeed
             ? _colorSelected.color
-            : _imageColorScheme!.primary,
+            : (_colorSelectionMethod == ColorSelectionMethod.customColor
+                  ? _customColorSelected
+                  : _imageColorScheme!.primary),
         useMaterial3: _useMaterial3,
         brightness: Brightness.dark,
       ),

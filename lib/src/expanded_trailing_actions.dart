@@ -25,7 +25,7 @@ class ExpandedTrailingActions extends StatelessWidget {
   final void Function(bool) handleBrightnessChange;
   final void Function() handleMaterialVersionChange;
   final void Function(int) handleImageSelect;
-  final void Function(int) handleColorSelect;
+  final void Function(BuildContext, int) handleColorSelect;
 
   final bool useLightMode;
   final bool useMaterial3;
@@ -72,7 +72,7 @@ class ExpandedTrailingActions extends StatelessWidget {
           ),
           const Divider(),
           ExpandedColorSeedAction(
-            handleColorSelect: handleColorSelect,
+            handleColorSelect: (value) => handleColorSelect(context, value),
             colorSelected: colorSelected,
             colorSelectionMethod: colorSelectionMethod,
           ),

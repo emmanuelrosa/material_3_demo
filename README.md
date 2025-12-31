@@ -2,6 +2,20 @@
 
 This is a copy of the *material_3_demo* project from Flutter's [sample](https://github.com/flutter/samples) repository. I didn't fork the repository because I only wanted to clone this specific project. Hopefully that makes it clear that I'm not trying to copy someone else's work and pass it off as my own.
 
+My primary modification was to add a color picker (using the [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker) package) so that a custom color can be used to seed the [ColorScheme](https://api.flutter.dev/flutter/material/ColorScheme-class.html). This makes it easy to see the effect a given color scheme has on the Material components.
+
+To integrate this modification, I added a *custom* entry to the color selector:
+
+![Tablet Screenshot](screenshot-tablet.jpeg)
+
+When selected, a color picker is displayed in a modal dialog:
+
+![Desktop Screenshot](screenshot-desktop.jpeg)
+
+The *Ok* button needs to be clicked to apply the color.
+
+And now, on to the original README...
+
 This sample Flutter app showcases Material 3 features in the Flutter Material library. These features include updated components, typography, color system and elevation support. The app supports light and dark themes, different color palettes, as well as the ability to switch between Material 2 and Material 3. For more information about Material 3, the guidance is now live at https://m3.material.io/.
 
 This app also includes new M3 components such as IconButtons, Chips, TextFields, Switches, Checkboxes, Radio buttons and ProgressIndicators. 
