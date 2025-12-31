@@ -14,6 +14,8 @@ When selected, a color picker is displayed in a modal dialog:
 
 The *Ok* button needs to be clicked to apply the color.
 
+To access a live web-based build, go to [https://emmanuelrosa.github.io/material_3_demo/](https://emmanuelrosa.github.io/material_3_demo/).
+
 And now, on to the original README...
 
 This sample Flutter app showcases Material 3 features in the Flutter Material library. These features include updated components, typography, color system and elevation support. The app supports light and dark themes, different color palettes, as well as the ability to switch between Material 2 and Material 3. For more information about Material 3, the guidance is now live at https://m3.material.io/.
