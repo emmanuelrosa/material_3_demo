@@ -14,8 +14,8 @@ const double largeWidthBreakpoint = 1500;
 const double transitionLength = 500;
 
 // Whether the user has chosen a theme color via a direct [ColorSeed] selection,
-// or an image [ColorImageProvider].
-enum ColorSelectionMethod { colorSeed, image }
+// an image [ColorImageProvider], or a custom seed color.
+enum ColorSelectionMethod { colorSeed, image, customColor }
 
 enum ColorSeed {
   baseColor('M3 Baseline', Color(0xff6750a4)),
@@ -26,7 +26,8 @@ enum ColorSeed {
   yellow('Yellow', Colors.yellow),
   orange('Orange', Colors.orange),
   deepOrange('Deep Orange', Colors.deepOrange),
-  pink('Pink', Colors.pink);
+  pink('Pink', Colors.pink),
+  custom('Custom', Colors.grey);
 
   const ColorSeed(this.label, this.color);
   final String label;

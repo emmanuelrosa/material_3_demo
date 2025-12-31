@@ -66,7 +66,7 @@ class ColorSeedButton extends StatelessWidget {
     required this.colorSelectionMethod,
   });
 
-  final void Function(int) handleColorSelect;
+  final void Function(BuildContext, int) handleColorSelect;
   final ColorSeed colorSelected;
   final ColorSelectionMethod colorSelectionMethod;
 
@@ -108,7 +108,7 @@ class ColorSeedButton extends StatelessWidget {
           );
         });
       },
-      onSelected: handleColorSelect,
+      onSelected: (value) => handleColorSelect(context, value),
     );
   }
 }

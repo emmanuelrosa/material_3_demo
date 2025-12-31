@@ -36,7 +36,7 @@ class Home extends StatefulWidget {
 
   final void Function(bool useLightMode) handleBrightnessChange;
   final void Function() handleMaterialVersionChange;
-  final void Function(int value) handleColorSelect;
+  final void Function(BuildContext context, int value) handleColorSelect;
   final void Function(int value) handleImageSelect;
 
   @override

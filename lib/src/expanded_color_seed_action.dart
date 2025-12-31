@@ -21,7 +21,7 @@ class ExpandedColorSeedAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxHeight: 200.0),
+      constraints: const BoxConstraints(maxHeight: 260.0),
       child: GridView.count(
         crossAxisCount: 3,
         children: List.generate(
