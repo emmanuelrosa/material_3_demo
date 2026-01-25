@@ -2,6 +2,9 @@
 
 This is a copy of the *material_3_demo* project from Flutter's [sample](https://github.com/flutter/samples) repository. I didn't fork the repository because I only wanted to clone this specific project. Hopefully that makes it clear that I'm not trying to copy someone else's work and pass it off as my own.
 
+## Additional Features
+
+### Color Scheme Color Picker
 My primary modification was to add a color picker (using the [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker) package) so that a custom color can be used to seed the [ColorScheme](https://api.flutter.dev/flutter/material/ColorScheme-class.html). This makes it easy to see the effect a given color scheme has on the Material components.
 
 To integrate this modification, I added a *custom* entry to the color selector:
@@ -13,6 +16,10 @@ When selected, a color picker is displayed in a modal dialog:
 ![Desktop Screenshot](screenshot-desktop.jpeg)
 
 The *Ok* button needs to be clicked to apply the color.
+ 
+### Icons List
+
+I then added a list of the Material icons. You can see all of the icons, search for icons, and after selecting an icon you can copy the property name into the clipboard. You can then paste this into your code. Ex: `Icon(Icons.[copied_property_name])`.
 
 To access a live web-based build, go to [https://emmanuelrosa.github.io/material_3_demo/](https://emmanuelrosa.github.io/material_3_demo/).
 

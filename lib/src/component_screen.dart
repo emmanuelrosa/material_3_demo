@@ -1093,6 +1093,12 @@ const List<NavigationDestination> appBarDestinations = [
     label: 'Elevation',
     selectedIcon: Icon(Icons.opacity),
   ),
+  NavigationDestination(
+    tooltip: '',
+    icon: Icon(Icons.photo),
+    label: 'Icons',
+    selectedIcon: Icon(Icons.opacity),
+  ),
 ];
 
 const List<Widget> exampleBarDestinations = [
@@ -1186,19 +1192,26 @@ class _NavigationBarsState extends State<NavigationBars> {
     // App NavigationBar should get first focus.
     Widget navigationBar = Focus(
       autofocus: !(widget.isExampleBar || widget.isBadgeExample),
-      child: NavigationBar(
-        selectedIndex: selectedIndex,
-        onDestinationSelected: (index) {
-          setState(() {
-            selectedIndex = index;
-          });
-          if (!widget.isExampleBar) widget.onSelectItem!(index);
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return NavigationBar(
+            selectedIndex: selectedIndex,
+            labelBehavior: constraints.maxWidth < 390
+                ? NavigationDestinationLabelBehavior.alwaysHide
+                : NavigationDestinationLabelBehavior.alwaysShow,
+            onDestinationSelected: (index) {
+              setState(() {
+                selectedIndex = index;
+              });
+              if (!widget.isExampleBar) widget.onSelectItem!(index);
+            },
+            destinations: widget.isExampleBar && widget.isBadgeExample
+                ? barWithBadgeDestinations
+                : widget.isExampleBar
+                ? exampleBarDestinations
+                : appBarDestinations,
+          );
         },
-        destinations: widget.isExampleBar && widget.isBadgeExample
-            ? barWithBadgeDestinations
-            : widget.isExampleBar
-            ? exampleBarDestinations
-            : appBarDestinations,
       ),
     );
 

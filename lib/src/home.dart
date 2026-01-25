@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:material_3_demo/src/icons_screen.dart';
 
 import 'buttons.dart';
 import 'color_palettes_screen.dart';
@@ -129,6 +130,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     ScreenSelected.color => const ColorPalettesScreen(),
     ScreenSelected.typography => const TypographyScreen(),
     ScreenSelected.elevation => const ElevationScreen(),
+    ScreenSelected.icons => const IconsScreen(),
   };
 
   PreferredSizeWidget _createAppBar() {
