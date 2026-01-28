@@ -7,6 +7,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 import 'icons_list.dart';
 
@@ -30,6 +31,7 @@ class _IconsScreenState extends State<IconsScreen> {
           final searchFieldWidth = constraints.maxWidth > 800
               ? constraints.maxWidth / 3.0
               : null;
+          final numFormatter = NumberFormat();
           return Column(
             children: [
               SizedBox(height: 10),
@@ -42,6 +44,15 @@ class _IconsScreenState extends State<IconsScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: 10),
+              if (_searchKeywords.isEmpty)
+                Text(
+                  'Showing all ${numFormatter.format(IconsList.length)} icons.',
+                ),
+              if (_searchKeywords.isNotEmpty && icons.isNotEmpty)
+                Text(
+                  'Showing ${numFormatter.format(icons.length)} out of ${numFormatter.format(IconsList.length)} icons.',
+                ),
               SizedBox(height: 10),
               Expanded(
                 child: _IconGridView(
@@ -56,10 +67,10 @@ class _IconsScreenState extends State<IconsScreen> {
     );
   }
 
-  void _doSearch(String keywords) {
+  void _doSearch(Iterable<String> keywords) {
     setState(() {
       _searchKeywords.clear();
-      _searchKeywords.addAll(keywords.trim().split(' '));
+      _searchKeywords.addAll(keywords);
     });
   }
 
@@ -193,7 +204,7 @@ class _IconGridView extends StatelessWidget {
 
 class _SearchField extends StatefulWidget {
   final int mininumKeywordsLength;
-  final void Function(String) onSearch;
+  final void Function(Iterable<String>) onSearch;
   final Duration debounceDuration;
 
   const _SearchField({
@@ -249,8 +260,12 @@ class _SearchFieldState extends State<_SearchField> {
   }
 
   void _executeSearch() {
+    final keywords = _controller.text
+        .trim()
+        .split(' ')
+        .where((keyword) => keyword.isNotEmpty);
     _timer?.cancel();
-    widget.onSearch(_controller.text);
+    widget.onSearch(keywords);
   }
 }
 

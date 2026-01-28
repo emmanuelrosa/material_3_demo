@@ -5,7 +5,9 @@
 import 'package:flutter/material.dart';
 
 class IconsList {
-  static List<IconDescriptor> get descriptors => [
+  static int get length => descriptors.length;
+
+  static List<IconDescriptor> get descriptors => const [
     (Icons.ten_k, 'ten_k'),
     (Icons.ten_k_sharp, 'ten_k_sharp'),
     (Icons.ten_k_rounded, 'ten_k_rounded'),
