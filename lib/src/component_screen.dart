@@ -1097,7 +1097,7 @@ const List<NavigationDestination> appBarDestinations = [
     tooltip: '',
     icon: Icon(Icons.photo),
     label: 'Icons',
-    selectedIcon: Icon(Icons.opacity),
+    selectedIcon: Icon(Icons.photo),
   ),
 ];
 
