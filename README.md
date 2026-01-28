@@ -21,6 +21,8 @@ The *Ok* button needs to be clicked to apply the color.
 
 I then added a list of the Material icons. You can see all of the icons, search for icons, and after selecting an icon you can copy the property name into the clipboard. You can then paste this into your code. Ex: `Icon(Icons.[copied_property_name])`.
 
+![Phone Screenshot](screenshot-phone.jpeg)
+
 To access a live web-based build, go to [https://emmanuelrosa.github.io/material_3_demo/](https://emmanuelrosa.github.io/material_3_demo/).
 
 And now, on to the original README...
